@@ -23,7 +23,7 @@ class Game:
         if not (0 <= row < Cons.ROWS and 0 <= col < Cons.COLS):
             return
         
-        # Only allow moves on dark squares
+        # Only allow moves on dark squares (white squares is invalid)
         if (row + col) % 2 == 0:
             return
         
@@ -101,7 +101,7 @@ class Game:
             self.winner = Cons.SHEEP
             return
         
-        # Check if sheep is surrounded/blocked
+        # Check if sheep is surrounded
         sheep_can_move = False
         for sheep_piece in sheep:
             if sheep_piece.get_legal_moves(self.board.board):
@@ -159,13 +159,10 @@ class Game:
         screen.blit(move_text, (10, 50))
     
     def get_current_player(self):
-        """Get the current player"""
         return self.current_player
     
     def is_game_over(self):
-        """Check if game is over"""
         return self.game_over
     
     def get_winner(self):
-        """Get the winner of the game"""
         return self.winner
